@@ -1,14 +1,35 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdjq1b1wiaox1"]
+[gd_scene load_steps=11 format=3 uid="uid://bdjq1b1wiaox1"]
 
 [ext_resource type="Texture2D" uid="uid://niufyljgwqwd" path="res://assets/background/rocks_2.png" id="1_el72e"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_lat4m"]
+[ext_resource type="PackedScene" uid="uid://px6m5fslixc8" path="res://scenes/parallax_image/parallax_image.tscn" id="2_75opl"]
 [ext_resource type="PackedScene" uid="uid://djwyeloj8vuv7" path="res://scenes/plane/plane.tscn" id="2_pmofh"]
 [ext_resource type="PackedScene" uid="uid://dmpolnr2ji61h" path="res://scenes/game_over_ui/game_over_ui.tscn" id="2_ukt1f"]
+[ext_resource type="Texture2D" uid="uid://dip5odwaknnot" path="res://assets/background/sky.png" id="3_jl3du"]
 [ext_resource type="PackedScene" uid="uid://bao7261kq6nbr" path="res://scenes/hud/hud.tscn" id="3_k37dh"]
 [ext_resource type="PackedScene" uid="uid://bguipapv07cii" path="res://scenes/barrier/barrier.tscn" id="3_l5m7i"]
+[ext_resource type="Texture2D" uid="uid://egkijs07fet2" path="res://assets/background/clouds_2.png" id="4_hj58v"]
+[ext_resource type="Texture2D" uid="uid://cil3ucgqe5jj6" path="res://assets/background/rocks_1.png" id="5_teog7"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lat4m")
+
+[node name="ParalaxBackground" type="Node2D" parent="."]
+
+[node name="ParallaxImage" parent="ParalaxBackground" instance=ExtResource("2_75opl")]
+texture = ExtResource("3_jl3du")
+
+[node name="ParallaxImage2" parent="ParalaxBackground" instance=ExtResource("2_75opl")]
+autoscroll = Vector2(-20, 0)
+texture = ExtResource("4_hj58v")
+
+[node name="ParallaxImage3" parent="ParalaxBackground" instance=ExtResource("2_75opl")]
+autoscroll = Vector2(-50, 0)
+texture = ExtResource("5_teog7")
+
+[node name="ParallaxImage4" parent="ParalaxBackground" instance=ExtResource("2_75opl")]
+autoscroll = Vector2(-70, 0)
+texture = ExtResource("1_el72e")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -17,6 +38,7 @@ script = ExtResource("1_lat4m")
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3_k37dh")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(40, 315)
 texture = ExtResource("1_el72e")
 
@@ -24,10 +46,10 @@ texture = ExtResource("1_el72e")
 position = Vector2(35, 308)
 
 [node name="Celling" parent="." instance=ExtResource("3_l5m7i")]
-position = Vector2(0, -62)
+position = Vector2(0, -70)
 
 [node name="Floor" parent="." instance=ExtResource("3_l5m7i")]
-position = Vector2(0, 915)
+position = Vector2(0, 930)
 
 [node name="SpawnUpper" type="Marker2D" parent="."]
 position = Vector2(545, 340)

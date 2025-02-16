@@ -7,10 +7,12 @@ const POWER: float = -350.0
 
 @onready var plane_sprite: AnimatedSprite2D = $PlaneSprite
 @onready var plane_animation: AnimationPlayer = $PlaneAnimation
+@onready var sound: AudioStreamPlayer2D = $Sound
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	velocity = Vector2(0,POWER)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,5 +39,6 @@ func has_collied_with_barrier() -> void:
 
 func die() -> void:
 	plane_sprite.stop()
+	sound.stop()
 	set_physics_process(false)
 	SignalManager.on_plane_died.emit()
